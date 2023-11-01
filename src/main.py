@@ -28,13 +28,15 @@ async def get_all_posts():
     return repo.get_all()
 
 
-@app.get("/posts/{id:int}")
-async def get_post(id):
+# TODO: Investigate why "/posts/{id:int}" doesn't actually work.
+@app.get("/posts/{id}")
+async def get_post(id: int):
     return repo.get(id)
 
 
 @app.post("/posts")
 def create_post(new_post: Post):
+    repo.create(new_post)
     print(new_post)
     return {"new_post": new_post}
 

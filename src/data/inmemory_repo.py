@@ -14,3 +14,7 @@ class InMemoryRepo():
 
     def get(self, id):
         return self.__posts[id]
+
+    def create(self, post):
+        self.__posts[post.id] = post
+        return post
