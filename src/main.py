@@ -41,7 +41,7 @@ async def get_post(id: int, response: Response):
 
 
 @app.post("/posts")
-def create_post(new_post: Post):
+async def create_post(new_post: Post):
     repo.create(new_post)
     print(new_post)
     return {"new_post": new_post}
