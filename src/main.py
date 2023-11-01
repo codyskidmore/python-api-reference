@@ -34,7 +34,7 @@ async def get_post(id):
 
 
 @app.post("/posts")
-def create_post(new_post: Post):
+async def create_post(new_post: Post):
     print(new_post)
     return {"new_post": new_post}
 
