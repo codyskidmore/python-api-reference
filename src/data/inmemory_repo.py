@@ -13,6 +13,8 @@ class InMemoryRepo():
         return self.__posts
 
     def get(self, id):
+        if id not in self.__posts:
+            return
         return self.__posts[id]
 
     def create(self, post):

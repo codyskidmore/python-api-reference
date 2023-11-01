@@ -1,7 +1,7 @@
 # main.py
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, status, HTTPException
 from src.data.post import Post
 from src.data.inmemory_repo import InMemoryRepo
 
@@ -30,8 +30,14 @@ async def get_all_posts():
 
 # TODO: Investigate why "/posts/{id:int}" doesn't actually work.
 @app.get("/posts/{id}")
-async def get_post(id: int):
-    return repo.get(id)
+async def get_post(id: int, response: Response):
+    post = repo.get(id)
+    if not post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"Response": f"Post not found for id: {id}."}
+        )
+    return post
 
 
 @app.post("/posts")
