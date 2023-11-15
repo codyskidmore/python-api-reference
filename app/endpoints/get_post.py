@@ -7,7 +7,6 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-# repo = InMemoryRepo.get_instance()
 repo = InMemoryRepo()
 
 

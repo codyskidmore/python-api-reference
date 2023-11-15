@@ -13,7 +13,6 @@ class InMemoryRepo:
             cls.__instance = super().__new__(cls)
             cls.__instance.__posts[1] = Post(id=1, title="My Title 1", content="My Content 1")
             cls.__instance.__posts[2] = Post(id=2, title="My Title 2", content="My Content 2")
-            # Put any initialization here.
         return cls.__instance
 
     def get_all(self):
@@ -44,24 +43,3 @@ class InMemoryRepo:
             existing_post.__dict__[key] = update_dict[key]
         self.__posts[existing_post.id] = existing_post
         return existing_post
-
-
-# Guarantee singleton is returned
-# InMemoryRepo()
-
-
-"""
-    def __init__(self):
-        if InMemoryRepo.__instance is not None:
-            raise Exception("You must call InMemoryRepo.get_instance()")
-        else:
-            InMemoryRepo.__instance = self
-
-    @staticmethod
-    def get_instance():
-        if InMemoryRepo.__instance is None:
-            InMemoryRepo.__instance = InMemoryRepo()
-            InMemoryRepo.__instance.__posts[1] = Post(id=1, title="My Title 1", content="My Content 1")
-            InMemoryRepo.__instance.__posts[2] = Post(id=2, title="My Title 2", content="My Content 2")
-        return InMemoryRepo.__instance
-"""
