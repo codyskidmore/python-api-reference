@@ -1,5 +1,6 @@
 # from pydantic import BaseModel
 from src.data.post import Post
+from src.data.update_post import UpdatePost
 
 
 class InMemoryRepo():
@@ -17,6 +18,22 @@ class InMemoryRepo():
             return
         return self.__posts[id]
 
-    def create(self, post):
+    def create(self, post: Post):
+        if post.id in self.__posts:
+            return
         self.__posts[post.id] = post
         return post
+
+    def delete(self, id):
+        if id in self.__posts:
+            del self.__posts[id]
+        return
+
+    def update(self, update_post: UpdatePost):
+        if update_post.id not in self.__posts:
+            return
+        existing_post = self.__posts[update_post.id]
+        for key in update_post.data:
+            existing_post.__dict__[key] = update_post.data[key]
+        self.__posts[existing_post.id] = existing_post
+        return existing_post
