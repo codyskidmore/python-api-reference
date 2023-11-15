@@ -4,5 +4,7 @@ from pydantic import BaseModel
 
 
 class UpdatePost(BaseModel):
-    id: int
-    data: Dict
+    title: str = None
+    content: str = None
+    published: bool = False
+    rating: Optional[int] = None

@@ -52,9 +52,9 @@ async def delete(id: int):
     repo.delete(id)
 
 
-@app.put("/posts")
-async def put(update_post: UpdatePost):
-    updated_post = repo.update(update_post)
+@app.put("/posts/{id}")
+async def put(update_post: UpdatePost, id: int):
+    updated_post = repo.update(id, update_post)
     if not updated_post:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

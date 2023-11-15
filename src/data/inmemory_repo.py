@@ -29,11 +29,12 @@ class InMemoryRepo():
             del self.__posts[id]
         return
 
-    def update(self, update_post: UpdatePost):
-        if update_post.id not in self.__posts:
+    def update(self, id: int, update_post: UpdatePost):
+        if id not in self.__posts:
             return
-        existing_post = self.__posts[update_post.id]
-        for key in update_post.data:
-            existing_post.__dict__[key] = update_post.data[key]
+        existing_post = self.__posts[id]
+        update_dict = update_post.model_dump(exclude_unset=True)
+        for key in update_dict:
+            existing_post.__dict__[key] = update_dict[key]
         self.__posts[existing_post.id] = existing_post
         return existing_post

@@ -115,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": 1,\r\n  \"data\": {\"content\":\"my content 4\", \"published\": true}\r\n}",
+					"raw": "{\r\n  \"content\":\"my content 1 test\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,13 +123,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{BASE_URL}}/posts",
+					"raw": "http://{{BASE_URL}}/posts/1",
 					"protocol": "http",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"posts"
+						"posts",
+						"1"
 					]
 				}
 			},
