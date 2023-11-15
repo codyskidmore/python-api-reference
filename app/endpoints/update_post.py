@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status, HTTPException
 from app.data.update_post import UpdatePost
-from app.data import inmemory_repo
+from app.data.inmemory_repo import InMemoryRepo
 
 router = APIRouter(
     prefix="/posts",
@@ -8,7 +8,8 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-repo = inmemory_repo.repo
+# repo = InMemoryRepo.get_instance()
+repo = InMemoryRepo()
 
 
 @router.put("/{id}")
