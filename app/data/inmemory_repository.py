@@ -1,9 +1,10 @@
 # from pydantic import BaseModel
+from app.data.base_repository import BaseRepository
 from app.data.post import Post
 from app.data.update_post import UpdatePost
 
 
-class InMemoryRepo:
+class InMemoryRepository(BaseRepository):
     __posts = {}
     __instance = None
 

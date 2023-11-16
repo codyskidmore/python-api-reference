@@ -1,15 +1,14 @@
 from fastapi import APIRouter, status
-from app.data.inmemory_repo import InMemoryRepo
-
-router = APIRouter(
-    prefix="/posts",
-    tags=["Post"],
-    responses={404: {"description": "Not found"}},
-)
-
-repo = InMemoryRepo()
+from app.endpoints.base_route import BaseRoute, RouteInfo
 
 
-@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete(id: int):
-    repo.delete(id)
+class DeletePostRoute(BaseRoute):
+    def _get_api_route(self) -> RouteInfo:
+        return RouteInfo(path="/{id}", endpoint=self.delete, method=["DELETE"], status_code=status.HTTP_204_NO_CONTENT)
+
+    async def delete(self, id: int):
+        self._repo.delete(id)
+
+# @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+# async def delete(id: int):
+#     repo.delete(id)

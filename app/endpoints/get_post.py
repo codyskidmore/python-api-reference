@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status, HTTPException
-from app.data.inmemory_repo import InMemoryRepo
+from app.data.inmemory_repository import InMemoryRepository
 
 router = APIRouter(
     prefix="/posts",
@@ -7,7 +7,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-repo = InMemoryRepo()
+repo = InMemoryRepository()
 
 
 @router.get("/")
