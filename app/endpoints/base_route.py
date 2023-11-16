@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from collections import namedtuple
+from typing import List
 
 from fastapi import APIRouter, status
 
@@ -18,12 +19,13 @@ class BaseRoute(ABC):
         self._add_route()
 
     def _add_route(self):
-        route_info = self._get_api_route()
-        self._router.add_api_route(route_info.path, route_info.endpoint, methods=route_info.method,
-                                   status_code=route_info.status_code)
+        route_infos = self._get_api_routes()
+        for route_info in route_infos:
+            self._router.add_api_route(route_info.path, route_info.endpoint, methods=route_info.method,
+                                       status_code=route_info.status_code)
 
     @abstractmethod
-    def _get_api_route(self) -> RouteInfo:
+    def _get_api_routes(self) -> List[RouteInfo]:
         pass
 
     def get_api_routes(self) -> APIRouter:
