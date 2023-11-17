@@ -1,0 +1,18 @@
+﻿version: '3.9'
+
+services:
+
+  db:
+    image: postgres:latest
+    container_name: python-api-ref
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_USER=course
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=movies-dapper
+    ports:
+      - '5432:5432'
+volumes:
+    postgres-data:

@@ -16,9 +16,9 @@ class BaseRoute(ABC):
     def __init__(self, api_router: APIRouter, repo: BaseRepository):
         self._router = api_router
         self._repo = repo
-        self._add_route()
+        self._add_routes()
 
-    def _add_route(self):
+    def _add_routes(self):
         route_infos = self._get_api_routes()
         for route_info in route_infos:
             self._router.add_api_route(route_info.path, route_info.endpoint, methods=route_info.method,
